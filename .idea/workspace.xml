@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="018f6823-f627-4c42-b527-007f3511d3f2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/auto_file_transfer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/receive_file.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/receive_file_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/send_file.ps1" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/send_file.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/send_file_test.py" afterDir="false" />
-    </list>
+    <list default="true" id="018f6823-f627-4c42-b527-007f3511d3f2" name="更改" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
