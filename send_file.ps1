@@ -113,10 +113,10 @@ function Send-File($filePath) {
 	for ($i = 0; $i -lt 3; $i++) {
 		Set-Clipboard "-----END DATA TRANSFER-----"
 		Write-Output "传输结束，等待最终确认"
+		Start-Sleep -Seconds 1
 		if($clipboardContent -eq "OK"){
 			break
 		}
-		Start-Sleep -Seconds 1
 	}
 
 }
