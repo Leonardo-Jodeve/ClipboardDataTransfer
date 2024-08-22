@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="018f6823-f627-4c42-b527-007f3511d3f2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/receive_clipboard_QR.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example.rar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_to_bmp.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/file_to_bmp_new.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/output.bmp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/send_clipboard_QR.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/send_clipboard_QR.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
