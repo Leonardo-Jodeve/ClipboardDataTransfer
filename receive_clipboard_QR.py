@@ -74,7 +74,8 @@ def main():
                                     ordered_parts = [part_order[i] for i in sorted(part_order.keys())]
                                     decoded_binary_content = base64.b64decode("".join(ordered_parts))
                                     memory_file = io.BytesIO(decoded_binary_content)
-                                    while True:
+                                    # 不使用无限循环判断，为了后续发布做准备
+                                    for i in range(10):
                                         if pyperclip.paste() == "DONE":
                                             break
                                         else:
@@ -91,11 +92,11 @@ def main():
                                     pyautogui.press("right")
                 cv2.waitKey(150)
             else:
-                print("扫描结束！休眠5秒")
+                print("扫描结束！")
                 del part_order
                 break
 
-        # 如果需要持续扫描，可以设置一个短暂的延迟
+        # 设置下一次判断的延迟，避免无限循环过快
         cv2.waitKey(1000)
 
 
