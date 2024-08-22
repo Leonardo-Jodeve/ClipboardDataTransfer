@@ -35,7 +35,7 @@ function Get-Clipboard() {
 }
 
 # 定义临时目录路径
-$baseDir = "qd_code_transfer_temp"
+$baseDir = "qr_code_transfer_temp"
 $outputDir = Join-Path -Path (Get-Location) -ChildPath $baseDir
 
 # 创建临时目录
@@ -68,7 +68,7 @@ if ($clipboard.GetDataPresent([System.Windows.Forms.DataFormats]::FileDrop)) {
     Write-Host "ZIP文件已编码为Base64。"
 
     # 定义QR码块大小 (略少于2KB)
-    $maxChunkSize = 2500
+    $maxChunkSize = 2300
     $numChunks = [math]::Ceiling($base64String.Length / $maxChunkSize)
 
     # 分割Base64字符串并生成 QR 码
@@ -87,6 +87,7 @@ if ($clipboard.GetDataPresent([System.Windows.Forms.DataFormats]::FileDrop)) {
         $chunks[$j] | .\qrencode.exe -o $outputFile -s 2 -l L
         $qrCodePaths += $outputFile
         Write-Host "生成QR码: $outputFile"
+		Start-Sleep -Milliseconds 50
     }
 
     # 设置图片文件的路径准备打开第一个 QR 码图片
@@ -107,7 +108,7 @@ if ($clipboard.GetDataPresent([System.Windows.Forms.DataFormats]::FileDrop)) {
         if ($currentClipboardText -eq "DELETE ALL") {
             Write-Host "收到 DELETE ALL 命令，开始删除 QR 码图片并关闭查看软件。"
 
-            # 关闭查看软件 (假设使用mspaint查看图片)
+            # 关闭查看软件
             Stop-Process -Name rundll32 -ErrorAction SilentlyContinue
 
             # 删除临时目录及所有生成的文件
