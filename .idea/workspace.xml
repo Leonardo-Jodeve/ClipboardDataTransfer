@@ -5,11 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="018f6823-f627-4c42-b527-007f3511d3f2" name="更改" comment="">
-      <change afterPath="$PROJECT_DIR$/file_to_bmp.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/file_to_bmp_new.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/send_clipboard_QR.ps1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/receive_clipboard_QR.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/send_file.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/send_file.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example.rar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_to_bmp.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/file_to_bmp_new.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/output.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/send_clipboard_QR.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/send_clipboard_QR.ps1" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +45,7 @@
   &quot;keyToString&quot;: {
     &quot;Python.file_to_bmp.executor&quot;: &quot;Run&quot;,
     &quot;Python.file_to_bmp_new.executor&quot;: &quot;Run&quot;,
+    &quot;Python.receive_clipboard_QR.executor&quot;: &quot;Run&quot;,
     &quot;Python.receive_file.executor&quot;: &quot;Run&quot;,
     &quot;Python.receive_file_test.executor&quot;: &quot;Run&quot;,
     &quot;Python.send_file.executor&quot;: &quot;Run&quot;,
@@ -57,7 +61,7 @@
       <recent name="D:\Git\Python\auto_file_transfer\deprecated_files" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.file_to_bmp_new">
+  <component name="RunManager" selected="Python.receive_clipboard_QR">
     <configuration name="file_to_bmp" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="auto_file_transfer" />
       <option name="ENV_FILES" value="" />
@@ -94,6 +98,28 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/file_to_bmp_new.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="receive_clipboard_QR" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="auto_file_transfer" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/receive_clipboard_QR.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -146,35 +172,13 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="send_file_deprecated" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="auto_file_transfer" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="D:\Git\Python\auto_file_transfer\deprecated_files\send_file_deprecated.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.receive_clipboard_QR" />
         <item itemvalue="Python.file_to_bmp_new" />
         <item itemvalue="Python.file_to_bmp" />
         <item itemvalue="Python.receive_file_new" />
         <item itemvalue="Python.receive_file_deprecated" />
-        <item itemvalue="Python.send_file_deprecated" />
       </list>
     </recent_temporary>
   </component>
