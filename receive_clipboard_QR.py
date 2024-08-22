@@ -58,8 +58,11 @@ def main():
                     except Exception:
                         print("DECODE ERROR!")
                     for result in results:
-                        decoded_codes = result.data.decode("utf-8")
-                        if decoded_codes.startswith("-----BEGIN PART"):
+                        try:
+                            decoded_codes = result.data.decode("utf-8")
+                        except Exception:
+                            pass
+                        if decoded_codes and decoded_codes.startswith("-----BEGIN PART"):
                             part_header, part_content, part_footer = decoded_codes.split("\n", 2)
                             part_number_match = re.search(r'-----BEGIN PART (\d+) OF (\d+)-----', part_header)
                             if part_number_match:
@@ -71,8 +74,11 @@ def main():
                                     ordered_parts = [part_order[i] for i in sorted(part_order.keys())]
                                     decoded_binary_content = base64.b64decode("".join(ordered_parts))
                                     memory_file = io.BytesIO(decoded_binary_content)
-                                    # 延时0.5秒让堡垒机程序退出
-                                    cv2.waitKey(500)
+                                    while True:
+                                        if pyperclip.paste() == "DONE":
+                                            break
+                                        else:
+                                            cv2.waitKey(200)
                                     # 使用 zipfile 模块解压缩内存中的文件
                                     with zipfile.ZipFile(memory_file, 'r') as zip_ref:
                                         # 获取压缩文件中的所有文件名
@@ -83,14 +89,14 @@ def main():
                                     break
                                 else:
                                     pyautogui.press("right")
-                cv2.waitKey(100)
+                cv2.waitKey(150)
             else:
                 print("扫描结束！休眠5秒")
                 del part_order
                 break
 
         # 如果需要持续扫描，可以设置一个短暂的延迟
-        cv2.waitKey(5000)
+        cv2.waitKey(1000)
 
 
 if __name__ == "__main__":

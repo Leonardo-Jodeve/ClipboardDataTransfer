@@ -114,6 +114,7 @@ if ($clipboard.GetDataPresent([System.Windows.Forms.DataFormats]::FileDrop)) {
             # 删除临时目录及所有生成的文件
             Remove-Item -Path $outputDir -Recurse -Force
             Write-Host "临时目录及所有文件已删除。"
+            Set-Clipboard "DONE"
             break
         }
     }
