@@ -10,6 +10,7 @@ from pyautogui import press as pyautogui_press
 import base64
 import io
 import zipfile
+import winsound
 
 
 def find_qr_code(image):
@@ -31,6 +32,17 @@ def capture_screen():
     screen_np = np.array(screen)
     screen_rgb = cvtColor(screen_np, COLOR_BGR2RGB)
     return screen_rgb
+
+
+def alarm_sound():
+    winsound.Beep(2200, 100)
+    time.sleep(0.01)
+    winsound.Beep(2200, 100)
+
+
+def success_sound():
+    for freq in range(600, 1001, 200):
+        winsound.Beep(freq, 50)
 
 
 def main():
@@ -105,6 +117,7 @@ def main():
                                         missed_key_str = ",".join(missed_key_list_str)
                                         pyperclip.copy(f"REQ {missed_key_str}")
                                         print(f"Missing part {missed_key_str}, regenerating...")
+                                        alarm_sound()
                                         continue
                                     else:
                                         last_repeat_scan_chunk = part_number
@@ -126,6 +139,7 @@ def main():
                                         # 假设压缩包内只有一个文件，读取文件内容
                                         extracted_text = zip_ref.read(file_names[0]).decode('gbk')
                                         pyperclip.copy(extracted_text)
+                                        success_sound()
                                     break
                                 else:
                                     pyautogui_press("right")
