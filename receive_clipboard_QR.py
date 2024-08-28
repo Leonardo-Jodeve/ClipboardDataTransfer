@@ -1,11 +1,12 @@
-import cv2
+from cv2 import boundingRect, cvtColor, COLOR_BGR2RGB
+import time
 import numpy as np
 import pyzbar.pyzbar
 import pyperclip
 from pyzbar.pyzbar import decode
 from PIL import ImageGrab
 import re
-import pyautogui
+from pyautogui import press as pyautogui_press
 import base64
 import io
 import zipfile
@@ -18,7 +19,7 @@ def find_qr_code(image):
         for obj in decoded_objects:
             points = obj.polygon
             # 将二维码的四个顶点坐标转换为矩形
-            rect = cv2.boundingRect(np.array([points]))
+            rect = boundingRect(np.array([points]))
             x, y, w, h = rect
             return x, y, w, h
     return None
@@ -28,7 +29,7 @@ def capture_screen():
     # 捕获整个屏幕
     screen = ImageGrab.grab()
     screen_np = np.array(screen)
-    screen_rgb = cv2.cvtColor(screen_np, cv2.COLOR_BGR2RGB)
+    screen_rgb = cvtColor(screen_np, COLOR_BGR2RGB)
     return screen_rgb
 
 
@@ -47,7 +48,7 @@ def main():
             # 如果处于正在生成纠错码的阶段则循环等待
             while pyperclip.paste().startswith("REQ"):
                 print("Waiting for error handling QR...")
-                cv2.waitKey(1000)
+                time.sleep(1)
 
             if len(part_order) != total_parts:
                 # 捕获屏幕图像
@@ -60,7 +61,7 @@ def main():
 
                 if qr_location:
                     x, y, w, h = qr_location
-                    print(f"QR code found at: x={x}, y={y}, width={w}, height={h}")
+                    # print(f"QR code found at: x={x}, y={y}, width={w}, height={h}")
 
                     # 截取二维码区域
                     qr_code_image = screen_image[y - 20:y + h + 20, x - 20:x + w + 20]
@@ -90,8 +91,9 @@ def main():
                                 else:
                                     repeat_scan_count += 1
                                     print(f"Repeated scan of {part_number}")
-                                    if repeat_scan_count >= 3 and last_repeat_scan_chunk != last_repeat_scan_chunk:
-                                        # 当重复扫描计数大于等于 3 时可以判定已经进入下一个循环，这时没有扫描到的数据应该不会出现了
+                                    if (repeat_scan_count >= 3 and
+                                            (part_number != last_repeat_scan_chunk or total_parts <= 2)):
+                                        # 当重复扫描计数大于等于 3 ，并且和上一次扫描的图片一致时可以判定已经进入下一个循环
                                         # 所以没有必要继续循环下去，直接进入异常处理模式
                                         full_set = set(range(1, total_parts + 1))
                                         current_key_set = set(part_order.keys())
@@ -116,7 +118,7 @@ def main():
                                         if pyperclip.paste() == "DONE":
                                             break
                                         else:
-                                            cv2.waitKey(200)
+                                            time.sleep(0.2)
                                     # 使用 zipfile 模块解压缩内存中的文件
                                     with zipfile.ZipFile(memory_file, 'r') as zip_ref:
                                         # 获取压缩文件中的所有文件名
@@ -126,21 +128,21 @@ def main():
                                         pyperclip.copy(extracted_text)
                                     break
                                 else:
-                                    pyautogui.press("right")
+                                    pyautogui_press("right")
                 else:
                     # 在扫描状态下一个周期内没有找到二维码，也许是因为二维码生成失败，计数 + 1
                     fail_to_find_count += 1
                     if fail_to_find_count > 3 and not pyperclip.paste().startswith("REQ"):
-                        pyautogui.press("right")
+                        pyautogui_press("right")
                         fail_to_find_count = 0
-                cv2.waitKey(150)
+                time.sleep(0.15)
             else:
                 print("扫描结束！")
                 del part_order
                 break
 
         # 设置下一次判断的延迟，避免无限循环过快
-        cv2.waitKey(1000)
+        time.sleep(1)
 
 
 if __name__ == "__main__":
