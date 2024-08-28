@@ -84,7 +84,9 @@ if ($clipboard.GetDataPresent([System.Windows.Forms.DataFormats]::FileDrop)) {
     $qrCodePaths = @()
     for ($j = 0; $j -lt $chunks.Length; $j++) {
         $outputFile = Join-Path $outputDir "QR_Code_$($j + 1).png"
-        $chunks[$j] | .\qrencode.exe -o $outputFile -s 2 -l L
+        while(!(Test-Path $outputFile)){
+            $chunks[$j] | .\qrencode.exe -o $outputFile -s 2 -l L
+        }
         $qrCodePaths += $outputFile
         Write-Host "生成QR码: $outputFile"
 		Start-Sleep -Milliseconds 50
@@ -98,7 +100,7 @@ if ($clipboard.GetDataPresent([System.Windows.Forms.DataFormats]::FileDrop)) {
     Start-Process -FilePath $photoViewer -ArgumentList "`"$env:ProgramFiles\Windows Photo Viewer\PhotoViewer.dll`", ImageView_Fullscreen $firstQrCode"
     Write-Host "打开第一个QR码图片: $firstQrCode"
 
-    Set-Clipboard "---START-SCAN---"
+    Set-Clipboard "START-SCAN"
 
     # 开始监听剪贴板内容
     while ($true) {
@@ -116,6 +118,33 @@ if ($clipboard.GetDataPresent([System.Windows.Forms.DataFormats]::FileDrop)) {
             Write-Host "临时目录及所有文件已删除。"
             Set-Clipboard "DONE"
             break
+        }
+        if ($currentClipboardText.StartsWith("REQ")){
+            # 关闭查看软件
+            Stop-Process -Name rundll32 -ErrorAction SilentlyContinue
+			
+			$filesToDel = Join-Path $outputDir "*.png"
+			Remove-Item $filesToDel
+
+            $qrCodePaths = @()
+            $missingParts = $currentClipboardText.Substring(4) -split ","
+            foreach ($j in $missingParts) {
+                $j = [int]$j
+                $outputFile = Join-Path $outputDir "QR_Code_$($j).png"
+                while(!(Test-Path $outputFile)){
+                    $chunks[$j - 1] | .\qrencode.exe -o $outputFile -s 3 -l L
+                }
+                $qrCodePaths += $outputFile
+                Write-Host "重新生成QR码: $outputFile"
+		        # Start-Sleep -Milliseconds 20
+            }
+            # 设置图片文件的路径准备打开第一个 QR 码图片
+            $firstQrCode = $qrCodePaths[0]
+            # 确定 Windows 照片查看器的路径
+            $photoViewer = "$env:SystemRoot\System32\rundll32.exe"
+            # 打开图片
+            Start-Process -FilePath $photoViewer -ArgumentList "`"$env:ProgramFiles\Windows Photo Viewer\PhotoViewer.dll`", ImageView_Fullscreen $firstQrCode"
+            Set-Clipboard "START-SCAN"
         }
     }
 } else {
