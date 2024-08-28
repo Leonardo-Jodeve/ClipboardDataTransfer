@@ -88,7 +88,7 @@ if ($clipboard.GetDataPresent([System.Windows.Forms.DataFormats]::FileDrop)) {
             $chunks[$j] | .\qrencode.exe -o $outputFile -s 2 -l L
         }
         $qrCodePaths += $outputFile
-        Write-Host "生成QR码: $outputFile"
+        Write-Host "生成QR码: $outputFile of $chunk_index"
 		Start-Sleep -Milliseconds 50
     }
 
